@@ -109,7 +109,7 @@
 
     <div class="row">
         <div class="col-md-12 wobble">
-            <img src="george-skivington-beard-celebrity-mask.png" width="100%" alt="" srcset="">
+            <img id="face" src="george-skivington-beard-celebrity-mask.png" width="100%" alt="" srcset="">
         </div>
         <div class="col-md-12">
             <h1 style="text-align: center;" class="strap">OUT</h1>
@@ -130,10 +130,23 @@
         var iframeElement = document.querySelector('iframe');
         var iframeElementID = iframeElement.id;
         var widget1 = SC.Widget(iframeElement);
+        var play = false;
 
         window.setTimeout(function () {
-            widget1.play()
+            widget1.play();
+            play = true;
         }, 500);
+
+        document.getElementById("face").addEventListener("click", () => {
+            if (play) {
+                widget1.pause();
+                play = false;
+                return;
+            }
+
+            widget1.play();
+            play = true;
+        });
 
 
         document.addEventListener("DOMContentLoaded", function () {
