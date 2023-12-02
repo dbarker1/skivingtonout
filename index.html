@@ -55,7 +55,6 @@
 
         .wobble {
             display: inline-block;
-            /* or block, depending on your layout */
             animation: wobbleClockwise 2s infinite alternate, wobbleAntiClockwise 2s infinite alternate;
         }
 
@@ -77,12 +76,11 @@
         .snowflake {
             position: absolute;
             background-color: #fff;
-            /* Snowflake color */
             width: 10px;
             height: 10px;
             border-radius: 50%;
             opacity: 0.7;
-            animation: falling linear infinite;
+            animation: falling cubic-bezier(0.33, 0.05, 0.87, 0.51) infinite;
         }
 
         @keyframes falling {
@@ -132,11 +130,6 @@
         var widget1 = SC.Widget(iframeElement);
         var play = false;
 
-        window.setTimeout(function () {
-            widget1.play();
-            play = true;
-        }, 500);
-
         document.getElementById("face").addEventListener("click", () => {
             if (play) {
                 widget1.pause();
@@ -148,19 +141,16 @@
             play = true;
         });
 
-
         document.addEventListener("DOMContentLoaded", function () {
             const snowflakesContainer = document.querySelector(".snowflakes");
 
-            for (let i = 0; i < 50; i++) { // Adjust the number of snowflakes as needed
-                createSnowflake();
-            }
+            for (let i = 0; i < 50; i++) createSnowflake();
 
             function createSnowflake() {
                 const snowflake = document.createElement("div");
                 snowflake.className = "snowflake";
                 snowflake.style.left = `${Math.random() * 100}vw`;
-                snowflake.style.animationDuration = `${Math.random() * 2 + 1}s`; // Adjust the animation duration
+                snowflake.style.animationDuration = `${Math.random() * 2 + 1}s`;
                 snowflakesContainer.appendChild(snowflake);
             }
         });
